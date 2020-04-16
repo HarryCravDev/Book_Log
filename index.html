@@ -10,8 +10,39 @@
     <title>Book Log</title>
 </head>
 <body>
-    <div class="container">
-        <h1 class="center">Book Log</h1>
+    <div class="container center">
+        <!-- Page Title -->
+        <h1 class="">Book Log</h1>
+
+        <form>
+            <!-- Input Fields -->
+            <div class="input-field col s6">
+                <input placeholder="Book Name" id="Book" type="text" class="validate">
+                <label for="first_name">Book Name</label>
+            </div>
+            <div class="input-field col s6">
+                <input placeholder="Author Name" id="Author" type="text" class="validate">
+                <label for="Author">Author</label>
+            </div>
+            <div class="input-field col s6">
+                <input placeholder="ISBN" id="ISBN" type="text" class="validate">
+                <label for="ISBN">ISBN</label>
+            </div>
+            <!-- Submit Button -->
+            <a class="left waves-effect waves-light btn">button</a>
+        </form>
+
+        <!-- Display Data Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author Name</th>
+                    <th>ISBN</th>
+                </tr>
+            </thead>
+            <tbody id="book-list"></tbody>
+        </table>
     </div>
 
     <!-- JS -->
