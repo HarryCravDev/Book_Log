@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
     <link rel="stylesheet" href="styles.css">
     <title>Book Log</title>
 </head>
@@ -14,22 +15,23 @@
         <!-- Page Title -->
         <h1 class="">Book Log</h1>
 
-        <form>
+        <!-- User Input -->
+        <form id="book-form">
             <!-- Input Fields -->
             <div class="input-field col s6">
-                <input placeholder="Book Name" id="Book" type="text" class="validate">
+                <input placeholder="Book Name" id="book" type="text" class="validate">
                 <label for="first_name">Book Name</label>
             </div>
             <div class="input-field col s6">
-                <input placeholder="Author Name" id="Author" type="text" class="validate">
+                <input placeholder="Author Name" id="author" type="text" class="validate">
                 <label for="Author">Author</label>
             </div>
             <div class="input-field col s6">
-                <input placeholder="ISBN" id="ISBN" type="text" class="validate">
+                <input placeholder="ISBN" id="isbn" type="text" class="validate">
                 <label for="ISBN">ISBN</label>
             </div>
             <!-- Submit Button -->
-            <a class="left waves-effect waves-light btn">button</a>
+            <input type="submit" value="Submit!" class="left waves-effect waves-light btn">
         </form>
 
         <!-- Display Data Table -->
