@@ -1,0 +1,11 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.alert {
+    color: white;
+    padding: 5px;
+    margin: 5px 0 15px 0;
+}
