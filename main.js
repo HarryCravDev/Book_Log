@@ -62,7 +62,54 @@ class UI {
     }
 }
 
-// Add Book - Event Listeners
+// Store to local storage
+class Store {
+    static getBooks(){
+        let books;
+        if(localStorage.getItem('books') === null){
+            books = [];
+        } else {
+            books = JSON.parse(localStorage.getItem('books')); 
+        }
+
+        return books
+    }
+
+    static displayBooks(){
+        const books = Store.getBooks();
+
+        books.forEach((book) => {
+            const ui = new UI;
+
+            ui.addBookToList(book);
+        });
+    }
+
+    static addBook(book){
+        const books = Store.getBooks();
+
+        books.push(book);
+
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+
+    static removeBook(isbn) {
+        const books = Store.getBooks();
+        
+        books.forEach((book, index) => {
+            if(book.isbn === isbn){
+                books.splice(index, 1);
+            }
+        });
+
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+}
+
+// Add books to UI on DOM load - Event Listener
+document.addEventListener('DOMContentLoaded', Store.displayBooks);
+
+// Add Book - Event Listener
 document.getElementById('book-form').addEventListener('submit', (e) => {
     // Get Form Value
     const title = document.getElementById('book').value,
@@ -73,7 +120,7 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
     const book = new Book(title, author, isbn);
     
     // Init UI
-    const ui = new UI();
+    const ui = new UI;
 
     // Validate
     if(title === '' || author === '' || isbn === ''){
@@ -81,6 +128,9 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
     } else {
         // Add Book to List
         ui.addBookToList(book);
+
+        // Add to LS
+        Store.addBook(book);
 
         // Show Successful log
         ui.showAlert('Book added!', 'green');
@@ -93,14 +143,16 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
     e.preventDefault();
 });
 
-// Add Book - Event Listeners
-document.getElementById('book-list').addEventListener('click', e => {
+// Add Book - Event Listener
+document.getElementById('book-list').addEventListener('click', (e) => {
     // Init UI
-    const ui = new UI();
+    const ui = new UI;
 
     if(e.target.classList.contains('delete')){
         // Delete book
         ui.deleteBook(e.target);
+        // Delete from LS
+        Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
         // Show Alert
         ui.showAlert('Book Removed!', 'green');
     }
